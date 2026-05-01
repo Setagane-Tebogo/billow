@@ -35,11 +35,8 @@
   .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .nav-logo-icon {
     width: 44px; height: 44px;
-    background: linear-gradient(135deg, #1a6dbf, #0d4a8a);
+    object-fit: contain;
     border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Playfair Display', serif;
-    color: #fff; font-size: 24px; font-weight: 700;
   }
   .nav-logo-text { line-height: 1.2; }
   .nav-logo-text strong { display: block; font-size: 15px; font-weight: 600; color: var(--dark); }
@@ -316,7 +313,7 @@
 <!-- NAVIGATION -->
 <nav>
   <a class="nav-logo" href="#">
-    <div class="nav-logo-icon">i</div>
+    <img src="logo.jpeg" alt="Inter Plus Bookkeepers Logo" class="nav-logo-icon" style="object-fit: contain;">
     <div class="nav-logo-text">
       <strong>Inter Plus Bookkeepers</strong>
       <span>Certified Accountant</span>
