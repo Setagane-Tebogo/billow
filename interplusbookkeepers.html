@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inter Plus Bookkeepers | Certified Accountants & Tax Practitioners</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1a6dbf;
+    --blue-dark: #0d4a8a;
+    --blue-light: #e8f3fc;
+    --yellow: #f5c518;
+    --yellow-dark: #d4a017;
+    --white: #ffffff;
+    --gray-light: #f4f6f9;
+    --gray: #666;
+    --dark: #0d1b2e;
+    --text: #1a1a2e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.08);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 70px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo-icon {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, #1a6dbf, #0d4a8a);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    color: #fff; font-size: 24px; font-weight: 700;
+  }
+  .nav-logo-text { line-height: 1.2; }
+  .nav-logo-text strong { display: block; font-size: 15px; font-weight: 600; color: var(--dark); }
+  .nav-logo-text span { font-size: 11px; color: var(--blue); letter-spacing: 1px; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--gray); font-size: 14px; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-cta {
+    background: var(--blue); color: #fff; border: none;
+    padding: 10px 22px; border-radius: 8px; font-size: 14px; font-weight: 500;
+    cursor: pointer; text-decoration: none; transition: background .2s;
+  }
+  .nav-cta:hover { background: var(--blue-dark); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--dark) 0%, #102848 60%, #1a6dbf 100%);
+    display: flex; align-items: center;
+    padding: 120px 5% 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -100px; right: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(26,109,191,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -50px; left: 30%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(245,197,24,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-content { max-width: 620px; position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(245,197,24,0.15); border: 1px solid rgba(245,197,24,0.3);
+    color: var(--yellow); padding: 6px 14px; border-radius: 20px;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .hero-badge::before { content: '✦'; font-size: 10px; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 5vw, 64px);
+    color: #fff; line-height: 1.15; margin-bottom: 24px;
+  }
+  .hero h1 em { font-style: normal; color: var(--yellow); }
+  .hero p {
+    font-size: 17px; color: rgba(255,255,255,0.75);
+    line-height: 1.7; margin-bottom: 40px; max-width: 480px;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--yellow); color: var(--dark);
+    padding: 14px 28px; border-radius: 10px;
+    font-weight: 600; font-size: 15px; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 20px rgba(245,197,24,0.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,197,24,0.4); }
+  .btn-outline {
+    border: 1.5px solid rgba(255,255,255,0.35); color: #fff;
+    padding: 14px 28px; border-radius: 10px;
+    font-weight: 500; font-size: 15px; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background .2s, border-color .2s;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }
+  .hero-stats {
+    display: flex; gap: 40px; margin-top: 56px;
+    padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .stat-item {}
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--yellow); font-weight: 700; }
+  .stat-label { font-size: 12px; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+
+  /* SECTION COMMON */
+  section { padding: 90px 5%; }
+  .section-tag {
+    display: inline-block;
+    background: var(--blue-light); color: var(--blue);
+    font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 20px; margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 46px);
+    color: var(--dark); margin-bottom: 16px; line-height: 1.2;
+  }
+  .section-sub { font-size: 17px; color: var(--gray); max-width: 540px; line-height: 1.7; margin-bottom: 50px; }
+
+  /* SPECIAL OFFER */
+  .special-offer {
+    background: linear-gradient(135deg, #fff8e1, #fffde7);
+    border: 2px solid var(--yellow);
+    border-radius: 20px;
+    padding: 50px;
+    text-align: center;
+    max-width: 700px; margin: 0 auto;
+    position: relative; overflow: hidden;
+  }
+  .special-offer::before {
+    content: 'LIMITED TIME';
+    position: absolute; top: 20px; right: -30px;
+    background: var(--blue); color: #fff; font-size: 11px; font-weight: 600;
+    padding: 6px 40px; transform: rotate(45deg); letter-spacing: 1px;
+  }
+  .offer-title { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--dark); margin-bottom: 10px; }
+  .offer-price { font-size: 72px; font-weight: 700; color: var(--blue-dark); line-height: 1; margin: 20px 0 10px; }
+  .offer-price sup { font-size: 28px; vertical-align: super; }
+  .offer-includes { list-style: none; margin: 24px 0; text-align: left; display: inline-block; }
+  .offer-includes li {
+    padding: 8px 0; font-size: 16px; color: var(--text);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .offer-includes li::before { content: '✓'; color: var(--blue); font-weight: 700; font-size: 18px; }
+
+  /* SERVICES */
+  .services-bg { background: var(--gray-light); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  .service-card {
+    background: var(--white); border-radius: 16px;
+    padding: 32px; border: 1px solid rgba(0,0,0,0.06);
+    transition: transform .3s, box-shadow .3s;
+    cursor: default;
+  }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(26,109,191,0.12); }
+  .service-icon {
+    width: 54px; height: 54px; border-radius: 14px;
+    background: var(--blue-light); display: flex; align-items: center; justify-content: center;
+    font-size: 26px; margin-bottom: 20px;
+  }
+  .service-card h3 { font-size: 18px; font-weight: 600; color: var(--dark); margin-bottom: 16px; }
+  .service-list { list-style: none; }
+  .service-list li {
+    font-size: 14px; color: var(--gray); padding: 5px 0;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+  }
+  .service-list li:last-child { border-bottom: none; }
+  .service-list li::before { content: '›'; color: var(--blue); font-weight: 700; font-size: 18px; }
+
+  /* MAINTENANCE */
+  .maintenance-card {
+    background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+    border-radius: 20px; padding: 60px;
+    display: flex; align-items: center; gap: 60px;
+    color: #fff; flex-wrap: wrap;
+  }
+  .maintenance-text { flex: 1; min-width: 280px; }
+  .maintenance-text h2 { font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 16px; }
+  .maintenance-text p { color: rgba(255,255,255,0.8); font-size: 16px; line-height: 1.7; margin-bottom: 24px; }
+  .maintenance-price { text-align: center; flex-shrink: 0; }
+  .price-amount { font-family: 'Playfair Display', serif; font-size: 80px; font-weight: 700; color: var(--yellow); line-height: 1; }
+  .price-label { font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 8px; }
+  .price-note { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 6px; }
+  .maint-features { list-style: none; margin-top: 8px; }
+  .maint-features li { padding: 6px 0; font-size: 15px; color: rgba(255,255,255,0.85); display: flex; align-items: center; gap: 10px; }
+  .maint-features li::before { content: '✓'; color: var(--yellow); font-weight: 700; }
+
+  /* WHY US */
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+  .why-card {
+    padding: 32px; border-radius: 16px;
+    border: 1px solid rgba(26,109,191,0.12);
+    transition: border-color .3s, background .3s;
+  }
+  .why-card:hover { border-color: var(--blue); background: var(--blue-light); }
+  .why-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px; color: rgba(26,109,191,0.15); font-weight: 700;
+    line-height: 1; margin-bottom: 16px;
+  }
+  .why-card h3 { font-size: 17px; font-weight: 600; color: var(--dark); margin-bottom: 10px; }
+  .why-card p { font-size: 14px; color: var(--gray); line-height: 1.7; }
+
+  /* CONTACT */
+  .contact-bg { background: var(--dark); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .contact-info .section-title { color: #fff; }
+  .contact-info .section-sub { color: rgba(255,255,255,0.6); }
+  .contact-detail {
+    display: flex; align-items: flex-start; gap: 16px;
+    margin-bottom: 28px;
+  }
+  .contact-icon {
+    width: 46px; height: 46px; border-radius: 12px;
+    background: rgba(26,109,191,0.3); display: flex; align-items: center;
+    justify-content: center; font-size: 20px; flex-shrink: 0;
+  }
+  .contact-detail-text strong { display: block; font-size: 14px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .contact-detail-text a, .contact-detail-text span { color: #fff; font-size: 16px; text-decoration: none; }
+  .contact-detail-text a:hover { color: var(--yellow); }
+
+  .contact-form { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 40px; }
+  .form-group { margin-bottom: 20px; }
+  .form-group label { display: block; font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 8px; letter-spacing: 0.3px; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15); border-radius: 10px;
+    padding: 12px 16px; color: #fff; font-size: 15px; font-family: 'DM Sans', sans-serif;
+    outline: none; transition: border-color .2s;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue); }
+  .form-group select option { background: var(--dark); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .submit-btn {
+    width: 100%; background: var(--yellow); color: var(--dark);
+    border: none; padding: 15px; border-radius: 10px;
+    font-size: 16px; font-weight: 600; cursor: pointer;
+    transition: transform .2s, box-shadow .2s; font-family: 'DM Sans', sans-serif;
+  }
+  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,197,24,0.4); }
+
+  /* CERTIFICATIONS */
+  .cert-bar {
+    background: var(--blue-light); padding: 30px 5%;
+    display: flex; align-items: center; justify-content: center; gap: 60px; flex-wrap: wrap;
+  }
+  .cert-item { display: flex; align-items: center; gap: 12px; }
+  .cert-badge {
+    width: 48px; height: 48px; border-radius: 10px;
+    background: var(--blue); display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 11px; font-weight: 700; text-align: center; line-height: 1.3; letter-spacing: 0.5px;
+  }
+  .cert-text strong { display: block; font-size: 14px; color: var(--dark); }
+  .cert-text span { font-size: 12px; color: var(--gray); }
+
+  /* FOOTER */
+  footer {
+    background: #060e1a;
+    padding: 40px 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 20px;
+  }
+  .footer-brand { color: rgba(255,255,255,0.5); font-size: 13px; }
+  .footer-brand strong { color: #fff; }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { color: rgba(255,255,255,0.4); font-size: 13px; text-decoration: none; transition: color .2s; }
+  .footer-links a:hover { color: var(--yellow); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero-stats { gap: 24px; flex-wrap: wrap; }
+    .maintenance-card { flex-direction: column; padding: 40px 28px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .special-offer { padding: 40px 24px; }
+    .special-offer::before { display: none; }
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content > * { animation: fadeUp 0.6s both; }
+  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-content > *:nth-child(5) { animation-delay: 0.5s; }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-icon">i</div>
+    <div class="nav-logo-text">
+      <strong>Inter Plus Bookkeepers</strong>
+      <span>Certified Accountant</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#special">Specials</a></li>
+    <li><a href="#maintenance">Packages</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">Get a Quote</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="about">
+  <div class="hero-content">
+    <div class="hero-badge">Certified Accountants &amp; Tax Practitioners</div>
+    <h1>Your Business<br><em>Finances,</em><br>Expertly Handled</h1>
+    <p>Inter Plus Bookkeepers provides comprehensive accounting, tax, and business registration services for individuals and businesses across South Africa. SAIBA &amp; ICBA certified.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#contact">📞 Contact Us Today</a>
+      <a class="btn-outline" href="#services">View Our Services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">SAIBA</div>
+        <div class="stat-label">Certified</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">ICBA</div>
+        <div class="stat-label">Accredited</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">R900</div>
+        <div class="stat-label">Reg from</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">R150</div>
+        <div class="stat-label">Maintenance/pm</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY REGISTRATION SPECIAL -->
+<section id="special" style="background: var(--gray-light);">
+  <div style="text-align:center; margin-bottom: 40px;">
+    <span class="section-tag">Limited Offer</span>
+    <h2 class="section-title" style="margin: 0 auto;">Company Registration Special</h2>
+  </div>
+  <div class="special-offer">
+    <div class="offer-title">Complete Registration Package</div>
+    <div style="color: var(--gray); font-size: 15px; margin-bottom: 16px;">Everything you need to get your company started</div>
+    <div class="offer-price"><sup>R</sup>900<span style="font-size:24px">⁰⁰</span></div>
+    <div style="color: var(--gray); font-size: 14px; margin-bottom: 8px;">from R900.00 only</div>
+    <ul class="offer-includes">
+      <li>Company Documents</li>
+      <li>Income Tax Letter</li>
+      <li>Share Certificates</li>
+      <li>Tax Compliance Pin (Tax Clearance)</li>
+    </ul>
+    <a class="btn-primary" href="#contact" style="margin-top: 8px; display: inline-flex;">Register Your Company Now →</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services-bg">
+  <span class="section-tag">What We Offer</span>
+  <h2 class="section-title">Our Services</h2>
+  <p class="section-sub">Comprehensive financial and business solutions for individuals and companies of all sizes.</p>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h3>Accounting Services</h3>
+      <ul class="service-list">
+        <li>Bookkeeping</li>
+        <li>Financial Statements</li>
+        <li>Management Accounts</li>
+        <li>NPO / NGO Audit</li>
+        <li>Church Audit</li>
+        <li>School Audit</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🧾</div>
+      <h3>Tax Services</h3>
+      <ul class="service-list">
+        <li>Tax Clearance</li>
+        <li>Tax Returns</li>
+        <li>VAT Registration &amp; Returns</li>
+        <li>Payroll</li>
+        <li>E-Filing</li>
+        <li>Tax Registration</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🏢</div>
+      <h3>Business Services</h3>
+      <ul class="service-list">
+        <li>Company Registration</li>
+        <li>Share Certificate</li>
+        <li>B-BEE Certificate</li>
+        <li>CIDB Registration</li>
+        <li>NCR Registration</li>
+        <li>Business Plan &amp; Profile</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- MAINTENANCE PACKAGE -->
+<section id="maintenance" style="background: var(--white);">
+  <div class="maintenance-card">
+    <div class="maintenance-text">
+      <h2>Let Us Maintain Your Company</h2>
+      <p>For businesses with an annual income between R0 – R100,000, we offer an all-inclusive monthly maintenance package that keeps everything compliant and up to date.</p>
+      <ul class="maint-features">
+        <li>Monthly Bookkeeping</li>
+        <li>Tax Returns</li>
+        <li>CIPC Returns</li>
+        <li>Tax Clearance</li>
+      </ul>
+      <a href="#contact" class="btn-primary" style="margin-top: 28px; background: var(--yellow); color: var(--dark); display: inline-flex;">Enquire Now →</a>
+    </div>
+    <div class="maintenance-price">
+      <div class="price-amount">R150</div>
+      <div class="price-label">per month only</div>
+      <div class="price-note">For companies R0 – R100,000 annual income</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section style="background: var(--gray-light);">
+  <span class="section-tag">Why Us</span>
+  <h2 class="section-title">Why Choose Inter Plus?</h2>
+  <p class="section-sub">Trusted by businesses across South Africa for reliable, professional financial services.</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-num">01</div>
+      <h3>SAIBA &amp; ICBA Certified</h3>
+      <p>Fully accredited by the Southern African Institute for Business Accountants and the Institute of Certified Bookkeepers and Accountants.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num">02</div>
+      <h3>Affordable Packages</h3>
+      <p>Company registration from R900 and monthly maintenance from only R150 – professional services designed to suit growing businesses.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num">03</div>
+      <h3>Full Compliance Support</h3>
+      <p>We handle tax returns, CIPC filings, VAT, payroll, and more – keeping your business fully compliant with SARS and all regulations.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num">04</div>
+      <h3>End-to-End Services</h3>
+      <p>From company registration and B-BEE certificates to audits and business plans – one firm for all your business needs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS BAR -->
+<div class="cert-bar">
+  <div class="cert-item">
+    <div class="cert-badge">SAIBA</div>
+    <div class="cert-text">
+      <strong>SAIBA Member</strong>
+      <span>Southern African Institute for Business Accountants</span>
+    </div>
+  </div>
+  <div class="cert-item">
+    <div class="cert-badge">ICBA</div>
+    <div class="cert-text">
+      <strong>ICBA Certified</strong>
+      <span>Institute of Certified Bookkeepers &amp; Accountants</span>
+    </div>
+  </div>
+  <div class="cert-item">
+    <div class="cert-badge" style="font-size:9px;">TAX<br>PRAC</div>
+    <div class="cert-text">
+      <strong>Tax Practitioners</strong>
+      <span>Registered with SARS</span>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-bg">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <span class="section-tag" style="background: rgba(26,109,191,0.3); color: #7bb8f0;">Get In Touch</span>
+      <h2 class="section-title">Ready to Get Started?</h2>
+      <p class="section-sub">Contact us today for a consultation. We're here to help your business stay compliant and grow.</p>
+
+      <div class="contact-detail">
+        <div class="contact-icon">📱</div>
+        <div class="contact-detail-text">
+          <strong>WhatsApp / Call</strong>
+          <a href="tel:0764156370">076 415 6370</a><br>
+          <a href="tel:0633580345">063 358 0345</a>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-icon">✉️</div>
+        <div class="contact-detail-text">
+          <strong>Email Us</strong>
+          <a href="mailto:interplusbookkeepers@gmail.com">interplusbookkeepers@gmail.com</a><br>
+          <a href="mailto:info@interplusbookkeepers.co.za">info@interplusbookkeepers.co.za</a>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-icon">🏛️</div>
+        <div class="contact-detail-text">
+          <strong>Business Name</strong>
+          <span>Inter Plus Bookkeepers (Pty) Ltd</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3 style="color: #fff; font-size: 20px; margin-bottom: 24px; font-family: 'Playfair Display', serif;">Send Us a Message</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="Your first name">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Your last name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+27 ...">
+      </div>
+      <div class="form-group">
+        <label>Service Required</label>
+        <select>
+          <option value="">Select a service...</option>
+          <option>Company Registration</option>
+          <option>Tax Services</option>
+          <option>Monthly Bookkeeping</option>
+          <option>Accounting &amp; Audits</option>
+          <option>Business Services (B-BEE, CIDB, etc.)</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us about your business needs..."></textarea>
+      </div>
+      <button class="submit-btn">Send Message ✉</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <strong>Inter Plus Bookkeepers (Pty) Ltd</strong><br>
+    Certified Accountants &amp; Tax Practitioners
+  </div>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#special">Specials</a>
+    <a href="#contact">Contact</a>
+    <a href="mailto:interplusbookkeepers@gmail.com">Email</a>
+  </div>
+  <div style="color: rgba(255,255,255,0.3); font-size: 12px;">
+    © 2026 Inter Plus Bookkeepers. All rights reserved.
+  </div>
+</footer>
+
+</body>
+</html>
